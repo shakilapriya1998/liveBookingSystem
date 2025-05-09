@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Booking List</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<h2>All Bookings</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Room</th>
+        <th>Status</th>
+        <th>Time</th>
+        <th>Actions</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="booking : ${bookings}">
+        <td th:text="${booking.id}">ID</td>
+        <td th:text="${booking.patient.name}">Patient</td>
+        <td th:text="${booking.doctor.name}">Doctor</td>
+        <td th:if="${booking.room}" th:text="${booking.room.name}">Room</td>
+        <td th:if="${booking.room == null}">N/A</td>
+        <td th:text="${booking.status}">Status</td>
+
+        <!-- Corrected Time display -->
+        <td th:text="${booking.bookingTime != null ? #temporals.format(booking.bookingTime, 'dd-MM-yyyy HH:mm') : 'N/A'}">Time</td>
+        <td>
+            <a th:href="@{'/bookings/' + ${booking.id} + '/edit'}">Edit</a> |
+            <a th:href="@{'/bookings/' + ${booking.id} + '/cancel'}"
+               onclick="return confirm('Are you sure you want to cancel this booking?');">
+                Cancel
+            </a>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
