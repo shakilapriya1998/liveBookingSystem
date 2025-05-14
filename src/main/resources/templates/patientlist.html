@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Patient List</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>List of Patients</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Check-In Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="patient : ${patients}">
+        <td th:text="${patient.id}"></td>
+        <td th:text="${patient.name}"></td>
+        <td th:text="${patient.status}"></td>
+        <td th:text="${#temporals.format(patient.checkInTime, 'dd-MM-yyyy HH:mm')}"></td>
+
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Patient Queue</title>
+    <meta charset="UTF-8">
+    <style>
+        table {
+            width: 60%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>Clinic Queue</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Patient Name</th>
+        <th>Status</th>
+        <th>Check-In Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="patient, stat : ${queue}">
+        <td th:text="${stat.count}">1</td>
+        <td th:text="${patient.name}">John Doe</td>
+        <td th:text="${patient.status}">QUEUED</td>
+        <td th:text="${#temporals.format(patient.checkInTime, 'dd-MM-yyyy HH:mm')}"></td>
+
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
