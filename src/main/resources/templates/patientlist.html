@@ -6,8 +6,7 @@
 </head>
 <body>
 <h1>List of Patients</h1>
-
-<table border="1">
+<table>
     <thead>
     <tr>
         <th>#</th>
@@ -21,11 +20,10 @@
         <td th:text="${patient.id}"></td>
         <td th:text="${patient.name}"></td>
         <td th:text="${patient.status}"></td>
-        <td th:text="${#temporals.format(patient.checkInTime, 'dd-MM-yyyy HH:mm')}"></td>
-
+        <td th:text="${#temporals.format(patient.checkInTime, 'yyyy-MM-dd HH:mm')}"></td>
     </tr>
     </tbody>
 </table>
-
 </body>
 </html>
+
